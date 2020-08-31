@@ -1,23 +1,27 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Jul 21 23:04:46 2020
+Created on Mon Aug 31 10:58:30 2020
 
 @author: nandini.ananthan
 """
 
 nums = [1,2,3,4]
-pdt = 1
-arr1 = []
 
-Output: [24,12,8,6]
 
-for num in nums:
-    pdt = pdt * num
-    print(pdt)
-    val = pdt // num
-    print(val)
-"""
-    val = pdt // num
-    arr1.append(val)
-print(arr1)
-"""
+def productExceptSelf(arr):
+    left = [1]* len(nums)
+        
+    for i in range(1,len(nums)):
+        left[i] = left[i-1] * nums[i-1]
+        
+    right = [1]* len(nums)
+    for i in range(len(nums)-2,-1,-1):
+        right[i] = right[i+1] * nums[i+1]
+    
+    res = [1]* len(nums)
+    for i in range(len(nums)):
+        res[i] = left[i] * right[i]
+    
+    return res
+    
+print(productExceptSelf(nums))
